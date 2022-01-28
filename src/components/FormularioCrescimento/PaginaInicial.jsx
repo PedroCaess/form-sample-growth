@@ -1,19 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button, ButtonGroup, makeStyles} from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-  }));
-  
-  const classes = useStyles();
-
 function PaginaInicial({ aoEnviar }) {
     const [date, setDate] = useState("");
     const [totalShots, setTotalShots] = useState("");
@@ -35,9 +22,13 @@ function PaginaInicial({ aoEnviar }) {
                 });
             }}
         >
-            <ButtonGroup disableElevation variant="contained" color="primary">
-                <Button>One</Button>
-                <Button>Two</Button>
+            <ButtonGroup variant="contained" color="primary" fullWidth>
+                <Button type="submit" variant="contained" color="primary">
+                    LCIS User
+                </Button>
+                <Button type="submit" variant="contained" color="primary">
+                    External User
+                </Button>
             </ButtonGroup>
         </form>
     );
