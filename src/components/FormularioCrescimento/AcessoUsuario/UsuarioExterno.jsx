@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
 import { TextField, Button, Switch, FormControlLabel } from "@material-ui/core";
 
-function DadosPessoais({ aoEnviar }) {
+function UsuarioExterno({ aoEnviar }) {
   const [nome, setNome] = useState("");
   const [sobrenome, setSobrenome] = useState("");
   const [email, setEmail] = useState("");
   const [instituicao, setInstituicao] = useState("");
   const [sigla, setSigla] = useState("");
-  const [possoEnviar] = useErros(validacoes);
+  //const [possoEnviar] = useErros(validacoes);
 
 
  
@@ -15,9 +15,9 @@ function DadosPessoais({ aoEnviar }) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        if (possoEnviar()) {
-          aoEnviar({ nome, sobrenome, email, grupo });
-        }
+        ///if (possoEnviar()) {
+          aoEnviar({ nome, sobrenome, email, instituicao, sigla });
+        ///}
       }}
     >
       <TextField
@@ -25,7 +25,7 @@ function DadosPessoais({ aoEnviar }) {
         onChange={(event) => {
           setNome(event.target.value);
         }}
-        onBlur={validarCampos}
+        ///onBlur={validarCampos}
         ///error={!erros.nome.valido}
         ///helperText={erros.nome.texto}
         id="nome"
@@ -87,10 +87,6 @@ function DadosPessoais({ aoEnviar }) {
         fullWidth
       />
       
-
-      <Button type="submit" variant="contained" color="primary">
-        Próximo
-      </Button>
     </form>
   );
 }

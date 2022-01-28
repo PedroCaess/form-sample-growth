@@ -1,16 +1,28 @@
 import React, { useState } from "react";
 import { TextField, Button, ButtonGroup, makeStyles} from "@material-ui/core";
+import UsuarioExterno from "./AcessoUsuario/UsuarioExterno";
+import UsuarioInterno from "./AcessoUsuario/UsuarioInterno";
+
 
 function PaginaInicial({ aoEnviar }) {
-    const [date, setDate] = useState("");
-    const [totalShots, setTotalShots] = useState("");
-    const [sampleName, setSampleName] = useState("");
-    const [alias, setAlias] = useState("");
-    const [pressaoBase, setPressaoBase] = useState("");
-    const [substrate, setSubstrate] = useState("");
-    const [targetsUsed, setTargetsUsed] = useState("");
-    const [focusTurns, setFocusTurns] = useState("");
-    const [fluence, setFluence] = useState("");
+    const [isInternal, setTipo] = useState(true);
+    const [colorInt, setColorInt] = useState("primary")
+    const [colorExt, setColorExt] = useState("inherit")
+
+
+   
+
+    const handleInternalClick = (event) => {
+        setTipo(true);
+        setColorInt("primary");
+        setColorExt("inherit");
+    };
+
+    const handleExternalClick = (event) => {
+        setTipo(false);
+        setColorInt("inherit");
+        setColorExt("primary");
+    };
   
   
 
@@ -23,13 +35,35 @@ function PaginaInicial({ aoEnviar }) {
             }}
         >
             <ButtonGroup variant="contained" color="primary" fullWidth>
-                <Button type="submit" variant="contained" color="primary">
+                <Button
+                    onClick={handleInternalClick}
+                    //value = {isInternal}
+                    variant="contained"
+                    color={colorInt}
+                >
                     LCIS User
                 </Button>
-                <Button type="submit" variant="contained" color="primary">
+                <Button
+                    onClick={handleExternalClick}
+                    //value = {isInternal}
+                    variant="contained"
+                    color={colorExt}
+                >
                     External User
                 </Button>
             </ButtonGroup>
+
+            {isInternal
+                ? <UsuarioInterno />
+                : <UsuarioExterno />
+            }
+       
+            
+
+            <Button type="submit" variant="contained" color="primary">
+                Próximo
+            </Button>
+
         </form>
     );
 }
